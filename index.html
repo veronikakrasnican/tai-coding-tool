@@ -172,6 +172,7 @@ tr.editing td { background:rgba(26,63,187,0.07); }
 <div class="tabs">
   <div class="tab active" onclick="switchTab('dashboard')">📊 Dashboard</div>
   <div class="tab" onclick="switchTab('coding')">✎ Coding Table</div>
+  <div class="tab" onclick="switchTab('analysis')">◈ Baseline Analysis</div>
 </div>
 
 <!-- DASHBOARD TAB -->
@@ -219,6 +220,223 @@ tr.editing td { background:rgba(26,63,187,0.07); }
       <div id="recent-list"></div>
     </div>
   </div>
+</div>
+
+<!-- ANALYSIS TAB -->
+<div class="app" id="tab-analysis" style="display:none;overflow-y:auto;padding:24px;">
+
+  <div style="margin-bottom:20px;">
+    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px;">Baseline Analysis — Top 3 Characteristics</div>
+    <div style="font-size:11px;color:var(--text2);">Based on Activity III individual rankings (n=156). Selected characteristics: Human-in-the-loop · Value-Aligned AI · Beneficial AI</div>
+  </div>
+
+  <!-- Summary stat row -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;">
+    <div class="card" style="border-top:2px solid var(--accent);">
+      <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent);">36</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin:2px 0;">Human-in-the-loop</div>
+      <div style="font-size:10px;color:var(--text2);">23.1% of all Top 3 mentions · 37 votes in Act IV</div>
+      <div style="margin-top:8px;font-size:10px;color:var(--text2);">#1 ranked characteristic overall</div>
+    </div>
+    <div class="card" style="border-top:2px solid var(--teal);">
+      <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--teal);">21</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin:2px 0;">Value-Aligned AI</div>
+      <div style="font-size:10px;color:var(--text2);">13.5% of all Top 3 mentions · 26 votes in Act IV</div>
+      <div style="margin-top:8px;font-size:10px;color:var(--text2);">#2 ranked characteristic overall</div>
+    </div>
+    <div class="card" style="border-top:2px solid var(--gold);">
+      <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--gold);">19</div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin:2px 0;">Beneficial AI</div>
+      <div style="font-size:10px;color:var(--text2);">12.2% of all Top 3 mentions · 27 votes in Act IV</div>
+      <div style="margin-top:8px;font-size:10px;color:var(--text2);">#3 ranked characteristic (tied with Secure)</div>
+    </div>
+  </div>
+
+  <!-- HITL -->
+  <div class="card" style="margin-bottom:16px;border-left:3px solid var(--accent);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--accent);">Human-in-the-loop</div>
+      <span style="font-size:10px;background:#2d1208;color:var(--accent);padding:2px 8px;border-radius:10px;border:1px solid var(--accent);">37 Act IV votes</span>
+    </div>
+
+    <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">What participants voted for</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;">
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P2 — AI designed to allow human agency & override</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:40.5%;height:100%;background:var(--accent);border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--accent);text-align:right;font-weight:600;">15 · 40.5%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P1 — Human authority to report, supervise, or stop AI</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:35.1%;height:100%;background:var(--accent);opacity:.75;border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">13 · 35.1%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P0 — Human has more autonomy than the machine</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:16.2%;height:100%;background:var(--accent);opacity:.45;border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">6 · 16.2%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text2);">P3 — Other</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:8.1%;height:100%;background:var(--border);border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">3 · 8.1%</div>
+      </div>
+    </div>
+
+    <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Participant definitions (Act III)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"AI in healthcare must always involve triage and human oversight, we cannot permit it to run autonomously, given its life-critical implications."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">AI Developer · Dubai</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"Humans should still be the final filter for actions based on AI data as we are able to see nuance that a binary system cannot."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Patient · Boston</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"The duty of care must withstand technological advancements. Humans must be compensable when harm is caused by wrongdoing."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Doctor · San Francisco</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"In the healthcare domain, where we deal directly with human health and lives, I expect the human-in-the-loop to always remain the final decision-maker."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">AI Developer · Dubai</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"High tech – High touch AI is an imperative in healthcare as every body is unique and dynamic so the human intervention for cure is inevitable."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Patient · San Francisco</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"Human feedback is actively sought throughout the entire AI lifecycle."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Policy maker · San Francisco</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding:8px 12px;background:#1a1208;border:1px solid #3a2a10;border-radius:5px;font-size:10px;color:var(--gold);">
+      ◈ Key insight: Participants concentrated votes on agency &amp; override (P2) rather than simple oversight — suggesting a demand for active, not passive, human control.
+    </div>
+  </div>
+
+  <!-- Value-Aligned -->
+  <div class="card" style="margin-bottom:16px;border-left:3px solid var(--teal);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--teal);">Value-Aligned AI</div>
+      <span style="font-size:10px;background:#08241e;color:var(--teal);padding:2px 8px;border-radius:10px;border:1px solid var(--teal);">26 Act IV votes</span>
+    </div>
+
+    <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">What participants voted for</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;">
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P1 — Model behaviour aligns with human ethical &amp; professional values</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:53.8%;height:100%;background:var(--teal);border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--teal);text-align:right;font-weight:600;">14 · 53.8%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P2 — System allows for ethical judgements in treatment</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:23.1%;height:100%;background:var(--teal);opacity:.7;border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">6 · 23.1%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text2);">P3 — Other</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:15.4%;height:100%;background:var(--border);border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">4 · 15.4%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P0 — Transparent acknowledgment of AI purpose</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:7.7%;height:100%;background:var(--teal);opacity:.4;border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">2 · 7.7%</div>
+      </div>
+    </div>
+
+    <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Participant definitions (Act III)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"AI must be aligned with human values. Its tangible benefits should manifest through concrete actions and results that are clearly measurable."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">AI Developer · Dubai</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"We have to decide which values we want to safeguard when designing and using AI so as to not render those values unsustainable."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Policy maker · Boston</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"AI that allows me to choose or leaves based on my culture/context and value systems."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Doctor · Boston</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"Guard against purely market-driven growth."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Policy maker · San Francisco</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"Informing AI with compassion, altruism, empathy and spirituality to enhance best possible outcomes."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">AI Developer · San Francisco</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"A multi-stakeholder perspective on value recognizes that it is not one-size-fits-all."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Policy maker · San Francisco</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding:8px 12px;background:#08241e;border:1px solid #0a3a28;border-radius:5px;font-size:10px;color:var(--teal);">
+      ◈ Key insight: 53.8% of votes on a single principle (P1). Tension in definitions between cultural/contextual alignment (doctors) and systemic protection against market forces (policy makers) — worth exploring as a divergence theme.
+    </div>
+  </div>
+
+  <!-- Beneficial -->
+  <div class="card" style="margin-bottom:16px;border-left:3px solid var(--gold);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--gold);">Beneficial AI</div>
+      <span style="font-size:10px;background:#2a1e08;color:var(--gold);padding:2px 8px;border-radius:10px;border:1px solid var(--gold);">27 Act IV votes</span>
+    </div>
+
+    <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">What participants voted for</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;">
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P0 — AI designed for wellbeing of individuals &amp; groups equitably</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:66.7%;height:100%;background:var(--gold);border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--gold);text-align:right;font-weight:600;">18 · 66.7%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P1 — AI prioritizes welfare and benefits of the public</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:18.5%;height:100%;background:var(--gold);opacity:.65;border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">5 · 18.5%</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 160px 60px;align-items:center;gap:10px;">
+        <div style="font-size:11px;color:var(--text);">P2 — AI system minimizes environmental harm</div>
+        <div style="height:10px;background:var(--surface2);border-radius:3px;overflow:hidden;"><div style="width:14.8%;height:100%;background:var(--gold);opacity:.4;border-radius:3px;"></div></div>
+        <div style="font-size:10px;color:var(--text2);text-align:right;">4 · 14.8%</div>
+      </div>
+    </div>
+
+    <div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;">Participant definitions (Act III)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"The presence of AI should deliver clear benefits in every segment of healthcare, adding meaningful value rather than mere complexity."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Doctor · Dubai</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"For the good of others. Not in aid of only a bottom line. To make lives easier, allow people to enjoy life."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Patient · Boston</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"Patients must be better off from the implementation of AI or it should not be implemented."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Patient · San Francisco</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"Remain grounded in human values of collective good."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Policy maker · San Francisco</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"AI that benefits humankind — something that can help think rationally in high stress situations."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">Doctor · Boston</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 12px;">
+        <div style="font-family:'Lora',serif;font-size:11px;color:var(--text);line-height:1.55;font-style:italic;">"AI that delivers visceral impact in improving lives. Considerations for resiliency and security."</div>
+        <div style="font-size:9px;color:var(--text2);margin-top:6px;">AI Developer · San Francisco</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding:8px 12px;background:#2a1e08;border:1px solid #3a2a10;border-radius:5px;font-size:10px;color:var(--gold);">
+      ◈ Key insight: 66.7% of votes concentrated on a single principle (P0 — equitable wellbeing). Participants and patients share a hard line: if AI doesn't make patients better off, it should not be implemented.
+    </div>
+  </div>
+
+
 </div>
 
 <!-- CODING TABLE TAB -->
@@ -633,9 +851,10 @@ function filterByActivity(act) {
 
 // ── TABS ─────────────────────────────────────────────────────────────
 function switchTab(tab) {
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&tab==='dashboard')||(i===1&&tab==='coding')));
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&tab==='dashboard')||(i===1&&tab==='coding')||(i===2&&tab==='analysis')));
   document.getElementById('tab-dashboard').style.display=tab==='dashboard'?'flex':'none';
   document.getElementById('tab-coding').style.display=tab==='coding'?'flex':'none';
+  document.getElementById('tab-analysis').style.display=tab==='analysis'?'flex':'none';
   if(tab==='coding') renderTable();
 }
 
