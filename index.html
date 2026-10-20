@@ -153,6 +153,7 @@ tr.editing td { background:rgba(26,63,187,0.07); }
 ::-webkit-scrollbar-track { background:var(--bg); }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -205,6 +206,7 @@ tr.editing td { background:rgba(26,63,187,0.07); }
     <div class="prog-bar-wrap"><div class="prog-bar-fill" id="prog-fill" style="width:0%"></div></div>
     <span id="prog-label" style="font-size:11px;color:var(--text2);">Loading…</span>
     <button class="btn btn-ghost btn-sm" onclick="exportCSV()">⬇ Export CSV</button>
+    <button class="btn btn-ghost btn-sm" onclick="exportExcel()">⬇ Export Excel</button>
     <button class="btn btn-ghost btn-sm" onclick="loadData()">↻ Refresh</button>
   </div>
 
@@ -922,6 +924,58 @@ function exportCSV() {
   ].join(','))];
   const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv'})),download:'TAI_coding_export.csv'});
   a.click();
+}
+
+function exportExcel() {
+  if (typeof XLSX === 'undefined') { alert('Excel library not loaded yet. Please try again in a moment.'); return; }
+  const cn = id => CHARS[id] || '';
+  const sd = id => (SUBCHS[id] && SUBCHS[id].d) || '';
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Sheet 1: all coded records
+  const rows = data.map(r => ({
+    id: r.id, activity: r.activity, city: r.city, role: r.role, text: r.text,
+    characteristic_1: cn(r.char1), sub_principle_1: sd(r.sub1), alignment_1: r.align1 || '',
+    characteristic_2: cn(r.char2), sub_principle_2: sd(r.sub2), alignment_2: r.align2 || '',
+    sentiment: r.sentiment || '', votes: r.vote_count || '', status: r.status || '',
+    notes: r.notes || '', updated_at: r.updated_at || ''
+  }));
+  const wsData = XLSX.utils.json_to_sheet(rows);
+  wsData['!cols'] = [6,8,13,14,70,20,45,11,20,45,11,11,6,10,50,22].map(w => ({ wch: w }));
+  wsData['!autofilter'] = { ref: wsData['!ref'] };
+
+  // Sheet 2: characteristic counts per activity (Activity IV weighted by votes)
+  const acts = [...new Set(data.map(r => r.activity))].sort();
+  const counts = {};
+  data.forEach(r => [r.char1, r.char2].forEach(c => {
+    if (!c) return;
+    const k = cn(c); counts[k] = counts[k] || {};
+    const w = r.activity === 'IV' ? (r.vote_count || 1) : 1;
+    counts[k][r.activity] = (counts[k][r.activity] || 0) + w;
+  }));
+  const charRows = Object.keys(counts).sort().map(k => {
+    const o = { characteristic: k };
+    acts.forEach(a => { o['Activity ' + a] = counts[k][a] || 0; });
+    o.total = acts.reduce((s, a) => s + (counts[k][a] || 0), 0);
+    return o;
+  });
+  const wsChars = XLSX.utils.json_to_sheet(charRows);
+  wsChars['!cols'] = [{ wch: 22 }, ...acts.map(() => ({ wch: 12 })), { wch: 8 }];
+
+  // Sheet 3: sentiment per activity
+  const sents = ['Positive', 'Neutral', 'Ambiguous', 'Negative'];
+  const sentRows = acts.map(a => {
+    const o = { activity: a };
+    sents.forEach(s => { o[s] = data.filter(r => r.activity === a && r.sentiment === s).length; });
+    return o;
+  });
+  const wsSent = XLSX.utils.json_to_sheet(sentRows);
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, wsData, 'Coded data');
+  XLSX.utils.book_append_sheet(wb, wsChars, 'Characteristics');
+  XLSX.utils.book_append_sheet(wb, wsSent, 'Sentiment');
+  XLSX.writeFile(wb, 'TAI_coding_export_' + today + '.xlsx');
 }
 
 function renderAll() {
